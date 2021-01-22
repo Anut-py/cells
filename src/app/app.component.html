@@ -1,1 +1,49 @@
-<app-model-viewer modelName="donut" [ratio]="0.2"></app-model-viewer>
+<ng-template #modal>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left display-4">
+            {{ slideTitles[slide - 1] }}
+        </h4>
+        <button class="close pull-right" (click)="modalRef.hide()">
+            &times;
+        </button>
+    </div>
+    <div class="modal-body" [ngSwitch]="slide">
+        <p *ngSwitchCase="1">
+            Welcome to The Inner Workings of the Cell! In this website, you will
+            learn about the parts of a cell. However, you will need to know a
+            few things before you get started.
+        </p>
+        <p *ngSwitchCase="2">
+            To select an organelle, click on it in the image on the left side of
+            the page. When you click an organelle, its description and 3D model
+            will appear in the right side of the page.
+        </p>
+        <ng-container *ngSwitchCase="3">
+            <p>
+                After selecting an organelle, a 3D model of the organelle will
+                appear on the right side of the page. You can rotate the model
+                by dragging it, move with the arrow keys, and zoom in and out by
+                scrolling. You can practice on this donut:
+            </p>
+            <app-model-viewer
+                modelName="donut"
+                [ratio]="0.3"
+            ></app-model-viewer>
+        </ng-container>
+    </div>
+    <div class="modal-footer">
+        <button *ngIf="slide === 1" class="btn btn-default">
+            Skip Tutorial
+        </button>
+        <button
+            *ngIf="slide !== 1"
+            class="btn btn-default"
+            (click)="previousSlide()"
+        >
+            Previous
+        </button>
+        <button class="btn btn-primary" (click)="nextSlide()">
+            {{ slide >= 3 ? "Finish" : "Next" }}
+        </button>
+    </div>
+</ng-template>

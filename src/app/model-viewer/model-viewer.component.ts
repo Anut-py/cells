@@ -59,12 +59,22 @@ export class ModelViewerComponent implements AfterViewInit {
             );
             renderer.render(scene, camera);
         }
-        matLoader.load(`/assets/models/${this.modelName}.mtl`, (mat) => {
-            loader.setMaterials(mat);
-            loader.load(`/assets/models/${this.modelName}.obj`, (model) => {
-                scene.add(model);
-                animate();
-            });
-        });
+        matLoader.load(
+            `/assets/models/${this.modelName}.mtl`,
+            (mat) => {
+                loader.setMaterials(mat);
+                loader.load(`/assets/models/${this.modelName}.obj`, (model) => {
+                    scene.add(model);
+                    animate();
+                });
+            },
+            undefined,
+            () => {
+                loader.load(`/assets/models/${this.modelName}.obj`, (model) => {
+                    scene.add(model);
+                    animate();
+                });
+            }
+        );
     }
 }
