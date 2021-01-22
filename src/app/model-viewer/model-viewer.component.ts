@@ -26,7 +26,7 @@ export class ModelViewerComponent implements AfterViewInit {
         const loader = new OBJLoader();
         const matLoader = new MTLLoader();
         const scene = new THREE.Scene();
-        const light1 = new THREE.PointLight(0xffffff);
+        const light1 = new THREE.PointLight(0xffffff, 0.75);
         const camera = new THREE.PerspectiveCamera(
             75,
             window.innerWidth / window.innerHeight,
