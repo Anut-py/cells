@@ -33,6 +33,7 @@ export class PopupComponent implements OnInit, AfterViewInit {
     ngAfterViewInit(): void {
         this.modalRef = this.modalService.show(this.template, {
             animated: true,
+            ignoreBackdropClick: true,
         });
     }
 

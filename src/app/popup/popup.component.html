@@ -3,9 +3,6 @@
         <h4 class="modal-title pull-left display-4">
             {{ slideTitles[slide - 1] }}
         </h4>
-        <button class="close pull-right" (click)="modalRef.hide()">
-            &times;
-        </button>
     </div>
     <div class="modal-body" [ngSwitch]="slide">
         <p *ngSwitchCase="1">
