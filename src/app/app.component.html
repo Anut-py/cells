@@ -1,2 +1,63 @@
 <app-popup></app-popup>
-<app-model-viewer modelName="plant_cell" [ratio]="0.3"></app-model-viewer>
+<div class="pull-left col-6 left-panel">
+    <tabset #animalAndPlantCell>
+        <tab heading="Animal cell">
+            <span class="display-4">Animal cell</span>
+            <p>
+                Animal cells have several parts. In this website, you will be
+                able to see 3D models of 5 of them. Choose a cell part below to
+                get started.
+            </p>
+            <button
+                *ngFor="let organelle of animalCellParts"
+                class="btn btn-default m-2"
+                (click)="selectPart(organelle)"
+            >
+                {{ organelle.name }}
+            </button>
+        </tab>
+        <tab heading="Plant cell">
+            <span class="display-4">Plant cell</span>
+            <p>
+                Plant cells have more parts than animal cells do. Here you will
+                be able to see 7 of them. Select an organelle from the buttons
+                below to get started.
+            </p>
+            <button
+                *ngFor="let organelle of plantCellParts"
+                class="btn btn-default m-2"
+                (click)="selectPart(organelle)"
+            >
+                {{ organelle.name }}
+            </button>
+        </tab>
+    </tabset>
+</div>
+<div class="col-6 pull-right">
+    <ng-container *ngIf="!selectedPart; else organelleDesc">
+        <span class="display-3">No organelle selected</span>
+        <p class="m-2">
+            Select an organelle from the left side to see its description and 3D
+            model here.
+        </p>
+    </ng-container>
+    <ng-template #organelleDesc>
+        <span class="display-3">{{ selectedPart.name }}</span>
+        <p [innerHTML]="selectedPart.description"></p>
+        <app-model-viewer
+            [modelName]="selectedPart.modelName"
+            [ratio]="0.4"
+        ></app-model-viewer>
+    </ng-template>
+</div>
+<hr class="clear-float" />
+<h4 class="pull-left ml-3">
+    <small>Brought to you by </small>Anut
+    <a href="https://discord.gg/aryS4ufHUG" target="_blank"
+        ><img
+            class="rounded-circle ml-2 mr-0"
+            src="/assets/googlepfp.gif"
+            width="10%"
+    /></a>
+</h4>
+<i class="copyright mr-2">&copy;Copyright 2021 Anand Swaroop</i>

@@ -19,17 +19,16 @@
             have different organelles.
         </p>
         <p *ngSwitchCase="3">
-            To select an organelle, click on it in the image on the left side of
-            the page. When you click an organelle, its description and 3D model
+            To select an organelle, click on its button on the left side of the
+            page. When you select an organelle, its description and 3D model
             will appear in the right side of the page.
         </p>
         <ng-container *ngSwitchCase="4">
             <p>
-                After selecting an organelle, you can click on the View Model
-                button on the right side of the page. This will open up a 3D
-                model of the selected organelle. You can rotate the model by
-                dragging it, move with the arrow keys, and zoom in and out by
-                scrolling. You can practice on this donut:
+                After selecting an organelle, you can see a 3D model of the
+                selected organelle. You can rotate the model by dragging it,
+                move with the arrow keys, and zoom in and out by scrolling. You
+                can practice on this donut:
             </p>
             <app-model-viewer
                 modelName="donut"

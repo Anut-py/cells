@@ -3,12 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { ModelViewerComponent } from './model-viewer/model-viewer.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { CommonModule } from '@angular/common';
 import { PopupComponent } from './popup/popup.component';
 
 @NgModule({
     declarations: [AppComponent, ModelViewerComponent, PopupComponent],
-    imports: [BrowserModule, CommonModule, ModalModule.forRoot()],
+    imports: [
+        BrowserModule,
+        CommonModule,
+        ModalModule.forRoot(),
+        TabsModule.forRoot(),
+    ],
     providers: [],
     bootstrap: [AppComponent],
 })
