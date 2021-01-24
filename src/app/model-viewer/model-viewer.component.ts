@@ -28,6 +28,7 @@ export class ModelViewerComponent implements AfterViewInit, OnChanges {
     renderer: THREE.WebGLRenderer;
     controls: OrbitControls;
     model: THREE.Group;
+    models: Map<string, THREE.Group>;
     first = true;
 
     constructor() {}
@@ -60,7 +61,7 @@ export class ModelViewerComponent implements AfterViewInit, OnChanges {
         this.camera.lookAt(0, 0, 0);
         this.controls.update();
         this.scene.background = new THREE.Color(0xffffff);
-
+        this.models = new Map<string, THREE.Group>();
         this.container.nativeElement.appendChild(this.renderer.domElement);
         this.matLoader.load(
             `/assets/models/${this.modelName}.mtl`,
@@ -71,6 +72,7 @@ export class ModelViewerComponent implements AfterViewInit, OnChanges {
                     (model) => {
                         this.model = model;
                         this.scene.add(this.model);
+                        this.models.set(this.modelName, model);
                         this.animate();
                     }
                 );
@@ -82,6 +84,7 @@ export class ModelViewerComponent implements AfterViewInit, OnChanges {
                     (model) => {
                         this.model = model;
                         this.scene.add(this.model);
+                        this.models.set(this.modelName, model);
                         this.animate();
                     }
                 );
@@ -93,31 +96,40 @@ export class ModelViewerComponent implements AfterViewInit, OnChanges {
     ngOnChanges(): void {
         if (!this.first) {
             this.scene.remove(this.model);
-            this.matLoader.load(
-                `/assets/models/${this.modelName}.mtl`,
-                (mat) => {
-                    this.loader.setMaterials(mat);
-                    this.loader.load(
-                        `/assets/models/${this.modelName}.obj`,
-                        (model) => {
-                            this.model = model;
-                            this.scene.add(this.model);
-                            this.animate();
-                        }
-                    );
-                },
-                undefined,
-                () => {
-                    this.loader.load(
-                        `/assets/models/${this.modelName}.obj`,
-                        (model) => {
-                            this.model = model;
-                            this.scene.add(this.model);
-                            this.animate();
-                        }
-                    );
-                }
-            );
+            if (this.models.has(this.modelName)) {
+                const model = this.models.get(this.modelName);
+                this.model = model;
+                this.scene.add(model);
+                this.animate();
+            } else {
+                this.matLoader.load(
+                    `/assets/models/${this.modelName}.mtl`,
+                    (mat) => {
+                        this.loader.setMaterials(mat);
+                        this.loader.load(
+                            `/assets/models/${this.modelName}.obj`,
+                            (model) => {
+                                this.model = model;
+                                this.scene.add(this.model);
+                                this.models.set(this.modelName, model);
+                                this.animate();
+                            }
+                        );
+                    },
+                    undefined,
+                    () => {
+                        this.loader.load(
+                            `/assets/models/${this.modelName}.obj`,
+                            (model) => {
+                                this.model = model;
+                                this.scene.add(this.model);
+                                this.models.set(this.modelName, model);
+                                this.animate();
+                            }
+                        );
+                    }
+                );
+            }
         }
     }
 
