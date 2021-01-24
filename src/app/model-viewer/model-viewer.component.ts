@@ -10,6 +10,7 @@ import * as THREE from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { environment } from '../../environments/environment.prod';
 @Component({
     selector: 'app-model-viewer',
     templateUrl: './model-viewer.component.html',
@@ -30,6 +31,7 @@ export class ModelViewerComponent implements AfterViewInit, OnChanges {
     model: THREE.Group;
     models: Map<string, THREE.Group>;
     first = true;
+    environment = environment;
 
     constructor() {}
 
@@ -64,11 +66,11 @@ export class ModelViewerComponent implements AfterViewInit, OnChanges {
         this.models = new Map<string, THREE.Group>();
         this.container.nativeElement.appendChild(this.renderer.domElement);
         this.matLoader.load(
-            `/assets/models/${this.modelName}.mtl`,
+            `${environment.baseUrl}assets/models/${this.modelName}.mtl`,
             (mat) => {
                 this.loader.setMaterials(mat);
                 this.loader.load(
-                    `/assets/models/${this.modelName}.obj`,
+                    `${environment.baseUrl}assets/models/${this.modelName}.obj`,
                     (model) => {
                         this.model = model;
                         this.scene.add(this.model);
@@ -80,7 +82,7 @@ export class ModelViewerComponent implements AfterViewInit, OnChanges {
             undefined,
             () => {
                 this.loader.load(
-                    `/assets/models/${this.modelName}.obj`,
+                    `${environment.baseUrl}assets/models/${this.modelName}.obj`,
                     (model) => {
                         this.model = model;
                         this.scene.add(this.model);
@@ -103,11 +105,11 @@ export class ModelViewerComponent implements AfterViewInit, OnChanges {
                 this.animate();
             } else {
                 this.matLoader.load(
-                    `/assets/models/${this.modelName}.mtl`,
+                    `${environment.baseUrl}assets/models/${this.modelName}.mtl`,
                     (mat) => {
                         this.loader.setMaterials(mat);
                         this.loader.load(
-                            `/assets/models/${this.modelName}.obj`,
+                            `${environment.baseUrl}assets/models/${this.modelName}.obj`,
                             (model) => {
                                 this.model = model;
                                 this.scene.add(this.model);
@@ -119,7 +121,7 @@ export class ModelViewerComponent implements AfterViewInit, OnChanges {
                     undefined,
                     () => {
                         this.loader.load(
-                            `/assets/models/${this.modelName}.obj`,
+                            `${environment.baseUrl}assets/models/${this.modelName}.obj`,
                             (model) => {
                                 this.model = model;
                                 this.scene.add(this.model);

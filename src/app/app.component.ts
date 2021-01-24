@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CellPartModel } from './cell-part';
+import { environment } from '../environments/environment';
 
 @Component({
     selector: 'app-root',
@@ -7,6 +8,7 @@ import { CellPartModel } from './cell-part';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+    environment = environment;
     animalCellParts: CellPartModel[] = [
         {
             name: 'Nucleus',
