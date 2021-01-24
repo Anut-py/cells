@@ -1,4 +1,4 @@
-<app-popup></app-popup>
+<app-popup #popup></app-popup>
 <div class="pull-left col-6 left-panel">
     <tabset #animalAndPlantCell>
         <tab heading="Animal cell">
@@ -33,7 +33,7 @@
         </tab>
     </tabset>
 </div>
-<div class="col-6 pull-right">
+<div class="col-6 pull-right right-panel">
     <ng-container *ngIf="!selectedPart; else organelleDesc">
         <span class="display-3">No organelle selected</span>
         <p class="m-2">
@@ -46,9 +46,15 @@
         <p [innerHTML]="selectedPart.description"></p>
         <app-model-viewer
             [modelName]="selectedPart.modelName"
-            [ratio]="0.4"
+            [ratio]="0.45"
         ></app-model-viewer>
     </ng-template>
+    <button
+        class="btn btn-primary tutorial-btn"
+        (click)="popup.ngAfterViewInit()"
+    >
+        Tutorial
+    </button>
 </div>
 <hr class="clear-float" />
 <h4 class="pull-left ml-3">
