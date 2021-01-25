@@ -22,7 +22,7 @@ export class AppComponent {
             name: 'Mitochondria',
             description: `Mitochondria convert food into energy. Mitochondria are extremely important for a
             cell's survival, because without mitochondria a cell wouldn't have energy, and it would die.
-            Mitochondria are like factories in a city because factories generate energy and so do mitochondria.`,
+            Mitochondria are like power plants in a city because power plants generate energy and so do mitochondria.`,
             modelName: 'mitochondrion',
         },
         {
@@ -63,7 +63,7 @@ export class AppComponent {
             name: 'Mitochondria',
             description: `Mitochondria convert food into energy. Mitochondria are extremely important for a
             cell's survival, because without mitochondria a cell wouldn't have energy, and it would die.
-            Mitochondria are like factories in a city because factories generate energy and so do mitochondria.`,
+            Mitochondria are like power plants in a city because power plants generate energy and so do mitochondria.`,
             modelName: 'mitochondrion',
         },
         {
