@@ -97,7 +97,9 @@ export class ModelViewerComponent implements AfterViewInit, OnChanges {
 
     ngOnChanges(): void {
         if (!this.first) {
-            this.scene.remove(this.model);
+            while (this.scene.children.length > 0) {
+                this.scene.remove(this.scene.children[0]);
+            }
             if (this.models.has(this.modelName)) {
                 const model = this.models.get(this.modelName);
                 this.model = model;
