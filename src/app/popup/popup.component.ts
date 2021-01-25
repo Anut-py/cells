@@ -31,9 +31,7 @@ export class PopupComponent implements OnInit, AfterViewInit {
     ngOnInit(): void {}
 
     ngAfterViewInit(): void {
-        this.modalRef = this.modalService.show(this.template, {
-            animated: true,
-        });
+        this.modalRef = this.modalService.show(this.template);
     }
 
     nextSlide(): void {
