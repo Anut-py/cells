@@ -10,7 +10,7 @@ import * as THREE from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 @Component({
     selector: 'app-model-viewer',
     templateUrl: './model-viewer.component.html',
